@@ -64,11 +64,9 @@
   const clapSVG = `<svg class="clap" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="8" width="20" height="11" rx="1.5"/><path d="M2 12h20M7 8l-2 4M12 8l-2 4M17 8l-2 4M22 8l-2 4"/><g class="clap__stick"><rect x="2" y="3.5" width="20" height="4.5" rx="1"/><path d="M7.5 3.5l-2 4.5M12.5 3.5l-2 4.5M17.5 3.5l-2 4.5"/></g></svg>`;
   $$(".eyebrow").forEach((e) => { e.insertAdjacentHTML("afterbegin", clapSVG); e.classList.add("has-clap"); });
 
-  /* ---------- Preloader: 3-2-1 film leader → "Trupti Bhoir Filmss presents" ---------- */
+  /* ---------- Preloader: 3-2-1 film leader → Trupti Bhoir Filmss emblem, every load ---------- */
   const loader = $(".loader");
   const num = $(".leader__num");
-  let seen = false;
-  try { seen = sessionStorage.getItem("tb-intro") === "1"; sessionStorage.setItem("tb-intro", "1"); } catch (e) {}
   let loaded = document.readyState === "complete", introDone = false, finished = false;
   const finish = () => {
     if (finished) return;
@@ -85,13 +83,13 @@
   };
   addEventListener("load", () => { loaded = true; tryFinish(); });
   if (reduced) { introDone = true; tryFinish(); }
-  else if (seen) { loader.classList.add("is-short"); ident(1800); } // repeat visits in a session skip the countdown
   else {
+    const STEP = 300; // ms per countdown number
     [3, 2, 1].forEach((n, i) => setTimeout(() => {
       num.textContent = n;
       num.classList.remove("tick"); void num.offsetWidth; num.classList.add("tick");
-    }, i * 700));
-    setTimeout(() => ident(2200), 2100);
+    }, i * STEP));
+    setTimeout(() => ident(2200), 3 * STEP);
   }
   $(".loader__skip").addEventListener("click", () => { loaded = introDone = true; finish(); });
   setTimeout(() => { loaded = introDone = true; tryFinish(); }, 7000); // never hold the page hostage
