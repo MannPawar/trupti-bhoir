@@ -85,7 +85,7 @@
   };
   addEventListener("load", () => { loaded = true; tryFinish(); });
   if (reduced) { introDone = true; tryFinish(); }
-  else if (seen) ident(1800); // repeat visits in a session skip the countdown
+  else if (seen) { loader.classList.add("is-short"); ident(1800); } // repeat visits in a session skip the countdown
   else {
     [3, 2, 1].forEach((n, i) => setTimeout(() => {
       num.textContent = n;

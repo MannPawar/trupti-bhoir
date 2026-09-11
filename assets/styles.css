@@ -69,6 +69,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .loader::after { content: ""; position: absolute; inset: 0; opacity: .06; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .leader { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(circle at 50% 50%, #5a2e10 0%, var(--ink) 68%); transition: opacity .3s, transform .7s var(--ease-out); }
 .is-ident .leader { opacity: 0; transform: scale(1.18); }
+.is-short .leader { display: none; }
+.is-short .ident { transition-delay: 0s; }
 /* Calm by design: no flicker or flashes, just a smooth sweep and a soft fade per number */
 .leader__frame { position: relative; width: min(64vmin, 340px); aspect-ratio: 1; display: grid; place-items: center; }
 .leader__rings { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: rgba(251,243,230,.45); stroke-width: 1.2; }
